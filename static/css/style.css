@@ -1,0 +1,131 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #F7F4EF;
+    color: #26215C;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background-color: #F7F4EF;
+    border-bottom: 1px solid #EEEDFE;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #26215C;
+}
+
+.logo span {
+    color: #534AB7;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-login {
+    text-decoration: none;
+    color: #534AB7;
+    border: 1.5px solid #534AB7;
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.btn-login:hover {
+    background-color: #EEEDFE;
+}
+
+.btn-signup {
+    text-decoration: none;
+    color: white;
+    background-color: #534AB7;
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.btn-signup:hover {
+    background-color: #3C3489;
+}
+
+.hero {
+    text-align: center;
+    padding: 5rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: #26215C;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #534AB7;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.btn-getstarted {
+    text-decoration: none;
+    background-color: #534AB7;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-family: 'Georgia', serif;
+}
+
+.btn-getstarted:hover {
+    background-color: #3C3489;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem 4rem;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background-color: #EEEDFE;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 250px;
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: #534AB7;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.feature-card p {
+    color: #26215C;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Between Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">between <span>books</span></div>
+        <div class="nav-links">
+            <a href="/login" class="btn-login">Login</a>
+            <a href="/signup" class="btn-signup">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Never feel lost between books again</h1>
+        <p>Enter the book you just finished. We use AI to understand how it made you feel and find your perfect next read — automatically.</p>
+        <a href="/signup" class="btn-getstarted">Get Started — it's free</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>AI Powered</h3>
+            <p>Detects emotion from your book automatically — no manual input needed.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💜</div>
+            <h3>Feels Personal</h3>
+            <p>Every recommendation is unique to you and your reading history.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⏰</div>
+            <h3>Saves Time</h3>
+            <p>No more endless browsing — get your next read in seconds.</p>
+        </div>
+    </section>
+
+</body>
+</html>
