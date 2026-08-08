@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home — Between Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .home-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        .welcome-text {
+            color: #26215C;
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+        .welcome-sub {
+            color: #534AB7;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+        .search-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(83, 74, 183, 0.1);
+            border: 1px solid #EEEDFE;
+            margin-bottom: 2rem;
+        }
+        .search-label {
+            display: block;
+            color: #26215C;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.8rem;
+        }
+        .search-row {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .search-row input {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid #EEEDFE;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Georgia', serif;
+            color: #26215C;
+            background-color: #F7F4EF;
+        }
+        .search-row input:focus {
+            outline: none;
+            border-color: #534AB7;
+        }
+        .btn-search {
+            padding: 0.7rem 1.5rem;
+            background-color: #534AB7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Georgia', serif;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-search:hover {
+            background-color: #3C3489;
+        }
+        .section-title {
+            color: #26215C;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        .recs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .rec-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            border: 1px solid #EEEDFE;
+            box-shadow: 0 2px 10px rgba(83, 74, 183, 0.08);
+        }
+        .rec-cover {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            background-color: #EEEDFE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.8rem;
+            font-size: 2rem;
+        }
+        .rec-title {
+            color: #26215C;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        .rec-author {
+            color: #534AB7;
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+        }
+        .rec-tag {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            background-color: #FAECE7;
+            color: #993C1D;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #534AB7;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #EEEDFE;
+        }
+        .empty-state p {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">between <span>books</span></div>
+        <div class="nav-links">
+            <a href="/history" class="nav-link">History</a>
+            <div class="avatar">DR</div>
+        </div>
+    </nav>
+
+    <div class="home-container">
+        <h2 class="welcome-text">What did you just finish reading?</h2>
+        <p class="welcome-sub">Enter your last book and we'll find your next perfect read.</p>
+
+        <!-- Search Section -->
+        <div class="search-card">
+            <label class="search-label">Book you just finished</label>
+            <form action="/home" method="POST">
+                <div class="search-row">
+                    <input type="text" name="book_title" placeholder="e.g. The Alchemist" required>
+                    <button type="submit" class="btn-search">Find my next read →</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Recommendations Section -->
+        <div class="section-title">Recommended for you</div>
+        <div class="empty-state">
+            <div style="font-size: 2.5rem;">📚</div>
+            <p>Enter a book above to get your personalised recommendations!</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

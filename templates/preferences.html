@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences — Between Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .pref-container {
+            max-width: 580px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(83, 74, 183, 0.1);
+            border: 1px solid #EEEDFE;
+        }
+        .pref-container h2 {
+            text-align: center;
+            color: #26215C;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .pref-subtitle {
+            text-align: center;
+            color: #534AB7;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        .pref-label {
+            display: block;
+            color: #26215C;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+        .chips-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.8rem;
+        }
+        .chips-wrap input[type="checkbox"],
+        .chips-wrap input[type="radio"] {
+            display: none;
+        }
+        .chips-wrap label {
+            padding: 0.45rem 1.1rem;
+            border-radius: 20px;
+            border: 1.5px solid #534AB7;
+            color: #534AB7;
+            font-size: 0.88rem;
+            cursor: pointer;
+            background-color: white;
+            font-family: 'Georgia', serif;
+            transition: all 0.2s;
+        }
+        .chips-wrap input:checked + label {
+            background-color: #534AB7;
+            color: white;
+        }
+        .chips-wrap label:hover {
+            background-color: #EEEDFE;
+        }
+        .btn-pref {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #534AB7;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .btn-pref:hover {
+            background-color: #3C3489;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">between <span>books</span></div>
+    </nav>
+
+    <div style="padding: 1rem 2rem;">
+        <div class="pref-container">
+            <h2>Welcome to Between Books! 📚</h2>
+            <p class="pref-subtitle">Tell us about your reading taste so we can personalise your experience</p>
+
+            <form action="/preferences" method="POST">
+
+                <label class="pref-label">Favourite Genres (select all that apply)</label>
+                <div class="chips-wrap">
+                    <input type="checkbox" name="genre" value="Fiction" id="fiction">
+                    <label for="fiction">Fiction</label>
+
+                    <input type="checkbox" name="genre" value="Thriller" id="thriller">
+                    <label for="thriller">Thriller</label>
+
+                    <input type="checkbox" name="genre" value="Romance" id="romance">
+                    <label for="romance">Romance</label>
+
+                    <input type="checkbox" name="genre" value="Mystery" id="mystery">
+                    <label for="mystery">Mystery</label>
+
+                    <input type="checkbox" name="genre" value="Philosophy" id="philosophy">
+                    <label for="philosophy">Philosophy</label>
+
+                    <input type="checkbox" name="genre" value="Self-help" id="selfhelp">
+                    <label for="selfhelp">Self-help</label>
+
+                    <input type="checkbox" name="genre" value="Fantasy" id="fantasy">
+                    <label for="fantasy">Fantasy</label>
+
+                    <input type="checkbox" name="genre" value="Biography" id="biography">
+                    <label for="biography">Biography</label>
+
+                    <input type="checkbox" name="genre" value="Horror" id="horror">
+                    <label for="horror">Horror</label>
+
+                    <input type="checkbox" name="genre" value="Science Fiction" id="scifi">
+                    <label for="scifi">Science Fiction</label>
+                </div>
+
+                <label class="pref-label">Reading Language Preference (select one)</label>
+                <div class="chips-wrap">
+                    <input type="radio" name="language" value="English" id="english">
+                    <label for="english">English</label>
+
+                    <input type="radio" name="language" value="Hindi" id="hindi">
+                    <label for="hindi">Hindi</label>
+
+                    <input type="radio" name="language" value="Marathi" id="marathi">
+                    <label for="marathi">Marathi</label>
+
+                    <input type="radio" name="language" value="Tamil" id="tamil">
+                    <label for="tamil">Tamil</label>
+
+                    <input type="radio" name="language" value="Bengali" id="bengali">
+                    <label for="bengali">Bengali</label>
+
+                    <input type="radio" name="language" value="Telugu" id="telugu">
+                    <label for="telugu">Telugu</label>
+                </div>
+
+                <button type="submit" class="btn-pref">Save and Continue →</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
