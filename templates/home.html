@@ -100,6 +100,13 @@
             font-size: 0.95rem;
             margin-bottom: 0.2rem;
         }
+        .book-preview-info h4 a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .book-preview-info h4 a:hover {
+            text-decoration: underline;
+        }
         .book-preview-info p {
             color: #534AB7;
             font-size: 0.8rem;
@@ -213,12 +220,18 @@
             {% if book_info %}
             <div class="book-preview">
                 {% if book_info.cover %}
-                <img src="{{ book_info.cover }}" class="book-cover-img" alt="cover">
+                <a href="{{ book_info.link }}" target="_blank" rel="noopener">
+                    <img src="{{ book_info.cover }}" class="book-cover-img" alt="cover">
+                </a>
                 {% else %}
                 <div class="book-cover-placeholder">📖</div>
                 {% endif %}
                 <div class="book-preview-info">
-                    <h4>{{ book_info.title }}</h4>
+                    <h4>
+                        <a href="{{ book_info.link }}" target="_blank" rel="noopener">
+                            {{ book_info.title }}
+                        </a>
+                    </h4>
                     <p>{{ book_info.author }}</p>
                     {% if emotion %}
                     <span class="emotion-badge">✨ {{ emotion }}</span>

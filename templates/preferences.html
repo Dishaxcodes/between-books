@@ -163,7 +163,7 @@
             db,
             onAuthStateChanged,
             doc,
-            updateDoc
+            setDoc
         } from "{{ url_for('static', filename='js/firebase.js') }}";
 
         const form = document.getElementById("preferencesForm");
@@ -212,10 +212,10 @@
             saveBtn.textContent = "Saving...";
 
             try {
-                await updateDoc(doc(db, "users", currentUid), {
+                await setDoc(doc(db, "users", currentUid), {
                     genres: genres,
                     language: language
-                });
+                }, { merge: true });
 
                 console.log("Preferences saved!");
                 window.location.href = "/home";

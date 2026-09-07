@@ -57,7 +57,8 @@ def home():
                     'title': book.get('title', book_title),
                     'author': ', '.join(book.get('authors', ['Unknown'])),
                     'description': book.get('description', '')[:500],
-                    'cover': book.get('imageLinks', {}).get('thumbnail', '')
+                    'cover': book.get('imageLinks', {}).get('thumbnail', ''),
+                    'link': book.get('infoLink', '')
                 }
 
                 # Step 2 — Gemini AI Emotional Analysis
