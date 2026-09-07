@@ -77,6 +77,10 @@
         .btn-pref:hover {
             background-color: #3C3489;
         }
+        .btn-pref:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -90,7 +94,8 @@
             <h2>Welcome to Between Books! 📚</h2>
             <p class="pref-subtitle">Tell us about your reading taste so we can personalise your experience</p>
 
-            <form action="/preferences" method="POST">
+            <!-- No action/method — handled entirely by Firebase JS below -->
+            <form id="preferencesForm">
 
                 <label class="pref-label">Favourite Genres (select all that apply)</label>
                 <div class="chips-wrap">
@@ -146,10 +151,84 @@
                     <label for="telugu">Telugu</label>
                 </div>
 
-                <button type="submit" class="btn-pref">Save and Continue →</button>
+                <button type="submit" class="btn-pref" id="saveBtn">Save and Continue →</button>
             </form>
         </div>
     </div>
+
+    <script type="module">
+
+        import {
+            auth,
+            db,
+            onAuthStateChanged,
+            doc,
+            updateDoc
+        } from "{{ url_for('static', filename='js/firebase.js') }}";
+
+        const form = document.getElementById("preferencesForm");
+        const saveBtn = document.getElementById("saveBtn");
+
+        // Track the logged-in user's uid once Firebase confirms the session
+        let currentUid = null;
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUid = user.uid;
+                console.log("Logged in as:", currentUid);
+            } else {
+                // No one logged in — send them back to login
+                console.warn("No user logged in, redirecting...");
+                window.location.href = "/login";
+            }
+        });
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            if (!currentUid) {
+                alert("You're not logged in yet — please wait a moment and try again.");
+                return;
+            }
+
+            // Collect selected genres
+            const genreCheckboxes = document.querySelectorAll('input[name="genre"]:checked');
+            const genres = Array.from(genreCheckboxes).map(cb => cb.value);
+
+            // Collect selected language
+            const languageRadio = document.querySelector('input[name="language"]:checked');
+            const language = languageRadio ? languageRadio.value : null;
+
+            if (genres.length === 0) {
+                alert("Please select at least one genre.");
+                return;
+            }
+            if (!language) {
+                alert("Please select a reading language.");
+                return;
+            }
+
+            saveBtn.disabled = true;
+            saveBtn.textContent = "Saving...";
+
+            try {
+                await updateDoc(doc(db, "users", currentUid), {
+                    genres: genres,
+                    language: language
+                });
+
+                console.log("Preferences saved!");
+                window.location.href = "/home";
+
+            } catch (error) {
+                console.error("Firebase Error:", error);
+                alert("Couldn't save preferences: " + error.message);
+                saveBtn.disabled = false;
+                saveBtn.textContent = "Save and Continue →";
+            }
+        });
+
+    </script>
 
 </body>
 </html>

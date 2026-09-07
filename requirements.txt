@@ -1,5 +1,5 @@
 flask
 python-dotenv
 requests
-google-generativeai
+google-genai
 firebase-admin

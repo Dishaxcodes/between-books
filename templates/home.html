@@ -70,6 +70,49 @@
         .btn-search:hover {
             background-color: #3C3489;
         }
+        .book-preview {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.2rem;
+            padding: 1rem;
+            background-color: #F7F4EF;
+            border-radius: 10px;
+        }
+        .book-cover-img {
+            width: 50px;
+            height: 65px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        .book-cover-placeholder {
+            width: 50px;
+            height: 65px;
+            border-radius: 4px;
+            background-color: #EEEDFE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        .book-preview-info h4 {
+            color: #26215C;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+        .book-preview-info p {
+            color: #534AB7;
+            font-size: 0.8rem;
+            margin-bottom: 0.4rem;
+        }
+        .emotion-badge {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            background-color: #FAECE7;
+            color: #993C1D;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
         .section-title {
             color: #26215C;
             font-size: 1.1rem;
@@ -111,13 +154,10 @@
             font-size: 0.8rem;
             margin-bottom: 0.6rem;
         }
-        .rec-tag {
-            display: inline-block;
-            padding: 0.2rem 0.7rem;
-            background-color: #FAECE7;
-            color: #993C1D;
-            border-radius: 20px;
-            font-size: 0.75rem;
+        .rec-reason {
+            color: #6B6B6B;
+            font-size: 0.78rem;
+            line-height: 1.5;
         }
         .empty-state {
             text-align: center;
@@ -127,9 +167,18 @@
             border-radius: 16px;
             border: 1px solid #EEEDFE;
         }
-        .empty-state p {
-            font-size: 1rem;
-            margin-top: 0.5rem;
+        .error-msg {
+            text-align: center;
+            padding: 1rem;
+            color: #993C1D;
+            background: #FAECE7;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #534AB7;
         }
     </style>
 </head>
@@ -152,18 +201,58 @@
             <label class="search-label">Book you just finished</label>
             <form action="/home" method="POST">
                 <div class="search-row">
-                    <input type="text" name="book_title" placeholder="e.g. The Alchemist" required>
+                    <input type="text" name="book_title" 
+                           placeholder="e.g. The Alchemist" 
+                           value="{{ book_info.title if book_info else '' }}"
+                           required>
                     <button type="submit" class="btn-search">Find my next read →</button>
                 </div>
             </form>
+
+            <!-- Book Preview -->
+            {% if book_info %}
+            <div class="book-preview">
+                {% if book_info.cover %}
+                <img src="{{ book_info.cover }}" class="book-cover-img" alt="cover">
+                {% else %}
+                <div class="book-cover-placeholder">📖</div>
+                {% endif %}
+                <div class="book-preview-info">
+                    <h4>{{ book_info.title }}</h4>
+                    <p>{{ book_info.author }}</p>
+                    {% if emotion %}
+                    <span class="emotion-badge">✨ {{ emotion }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
         </div>
 
-        <!-- Recommendations Section -->
+        <!-- Error Message -->
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+
+        <!-- Recommendations -->
+        {% if recommendations %}
+        <div class="section-title">Recommended for you</div>
+        <div class="recs-grid">
+            {% for rec in recommendations %}
+            <div class="rec-card">
+                <div class="rec-cover">📚</div>
+                <div class="rec-title">{{ rec.title }}</div>
+                <div class="rec-author">{{ rec.author }}</div>
+                <div class="rec-reason">{{ rec.reason }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
         <div class="section-title">Recommended for you</div>
         <div class="empty-state">
             <div style="font-size: 2.5rem;">📚</div>
             <p>Enter a book above to get your personalised recommendations!</p>
         </div>
+        {% endif %}
 
     </div>
 
